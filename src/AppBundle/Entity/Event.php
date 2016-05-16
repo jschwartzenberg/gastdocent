@@ -29,9 +29,7 @@ class Event
     private $date;
 
     /**
-     * Moet een enum worden
-     * @ORM\ManyToOne(targetEntity="Status", inversedBy="products")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\Column(type="integer")
      */
     private $status;
 

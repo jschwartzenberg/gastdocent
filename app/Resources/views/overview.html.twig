@@ -6,12 +6,12 @@
             <div class="col-lg-8 col-lg-offset-2">
 
                 <!-- Buttons -->
-                <a href="/victor/web/app_dev.php/new" class="btn btn-default">
+                <a href="/web/app_dev.php/new" class="btn btn-default">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     agendapunt toevoegen
                 </a>
 
-                <a href="/victor/web/app_dev.php/createagenda" class="btn btn-default">
+                <a href="/web/app_dev.php/createagenda" class="btn btn-default">
                     <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
                     Genereren
                 </a>
@@ -25,7 +25,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Datum</th>
+                            {#<th>Datum</th>#}
                             <th>Status</th>
                             <th>Eventnummer</th>
                             <th>Omschrijving</th>
@@ -36,7 +36,7 @@
                         {% for event in events %}
                         <tr>
                             <th scope="row">{{ event.id }}</th>
-                            <td>{{ event.date }}</td>
+                            {#<td>{{ event.date }}</td>#}
                             <td>                                    <i class="fa fa-exclamation"></i>
                             </td>
                             <td>{{ event.number }}</td>
