@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -49,6 +50,50 @@ class DefaultController extends Controller
 //            'new.html.twig'
 //        );
         return $this->showAllAction();
+    }
+
+
+    /**
+     * @Route("/show/{eventId}", name="show")
+     */
+    public function showAction($eventId)
+    {
+        $event = $this->getDoctrine()
+            ->getRepository('AppBundle:Event')
+            ->find($eventId);
+
+        if (!$event) {
+            throw $this->createNotFoundException(
+                'No event found for id '.$eventId
+            );
+        }
+
+        return $this->render(
+            'show.html.twig',
+            array('event' => $event)
+        );
+    }
+
+    /**
+     * @Route("/delete/{eventId}", name="delete")
+     */
+    public function deleteAction($eventId)
+    {
+        $event = $this->getDoctrine()
+            ->getRepository('AppBundle:Event')
+            ->find($eventId);
+
+        if (!$event) {
+            throw $this->createNotFoundException(
+                'No event found for id '.$eventId
+            );
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($event);
+        $em->flush();
+
+        return new Response('Deleted event.');
     }
 
     /**

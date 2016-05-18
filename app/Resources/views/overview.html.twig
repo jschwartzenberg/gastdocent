@@ -6,7 +6,7 @@
             <div class="col-lg-8 col-lg-offset-2">
 
                 <!-- Buttons -->
-                <a href="/web/app_dev.php/new" class="btn btn-default">
+                <a href="{{ path('new') }}" class="btn btn-default">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     agendapunt toevoegen
                 </a>
@@ -41,8 +41,8 @@
                             </td>
                             <td>{{ event.number }}</td>
                             <td>{{ event.description }} </td>
-                            <td><a href="show/{{ event.id }}"><i class="fa fa-link"></i></a> |
-                                <a href="delete/{{ event.id }}"><i class="glyphicon glyphicon-remove" style="color: red;"></i></a>
+                            <td><a href="{{ path('show', {'eventId': event.id}) }}"><i class="fa fa-link"></i></a> |
+                                <a href="{{ path('delete', {'eventId': event.id}) }}"><i class="glyphicon glyphicon-remove" style="color: red;"></i></a>
                             </td>
                         </tr>
                         {% endfor %}
