@@ -39,7 +39,8 @@ class Event
     private $number;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\ManyToOne(targetEntity="Description")
+     * @ORM\JoinColumn(name="description", referencedColumnName="id")
      */
     private $description;
 
