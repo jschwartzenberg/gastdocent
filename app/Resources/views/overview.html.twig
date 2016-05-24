@@ -40,7 +40,7 @@
                             <td>                                    <i class="fa fa-exclamation"></i>
                             </td>
                             <td>{{ event.number }}</td>
-                            <td>{{ event.description }} </td>
+                            <td>{{ event.description.text }} </td>
                             <td><a href="{{ path('show', {'eventId': event.id}) }}"><i class="fa fa-link"></i></a> |
                                 <a href="{{ path('delete', {'eventId': event.id}) }}"><i class="glyphicon glyphicon-remove" style="color: red;"></i></a>
                             </td>
