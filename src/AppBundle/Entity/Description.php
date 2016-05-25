@@ -54,4 +54,8 @@ class Description
         $this->text = $text;
     }
 
+    public function __toString() {
+        return $this->getText();
+    }
+
 }

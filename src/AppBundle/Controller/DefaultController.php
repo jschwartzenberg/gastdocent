@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Event;
+use AppBundle\Form\EventType;
 use Doctrine\ORM\Mapping as ORM;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,27 +30,27 @@ class DefaultController extends Controller
     /**
      * @Route("/new", name="new")
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
         $event = new Event();
-        $event->setDate(new \DateTime());
-        $event->setNumber(200);
-        $event->setStatus(0);
-        $event->setDescription('Another event!');
+        $form = $this->createForm(EventType::class, $event);
 
-        $em = $this->getDoctrine()->getManager();
+        $form->handleRequest($request);
 
-        // tells Doctrine you want to (eventually) save the Product (no queries yet)
-        $em->persist($event);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // ... perform some action, such as saving the task to the database
 
-        // actually executes the queries (i.e. the INSERT query)
-        $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($event);
+            $em->flush();
+
+            return $this->redirectToRoute('overview');
+        }
 
 
-//        return $this->render(
-//            'new.html.twig'
-//        );
-        return $this->showAllAction();
+        return $this->render('new.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
 
